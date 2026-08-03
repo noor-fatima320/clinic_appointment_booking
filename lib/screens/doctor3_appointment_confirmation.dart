@@ -130,7 +130,7 @@ class Doctor3AppointmentConfirmationScreen extends StatelessWidget {
                         const SizedBox(height: 18),
 
                         const Text(
-                          "Ref. Booking No.: 24090078",
+                          "Ref. Booking No.: 24090080",
                           style: TextStyle(
                             fontFamily: "Poppins",
                             fontSize: 18,
@@ -257,7 +257,7 @@ class Doctor3AppointmentConfirmationScreen extends StatelessWidget {
             /// FLOATING POWER BUTTON
             ///==========================
             Positioned(
-              bottom: 90,
+              bottom: 40,
               right: 20,
               child: GestureDetector(
                 onTap: () {

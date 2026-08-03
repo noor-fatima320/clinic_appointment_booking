@@ -257,7 +257,7 @@ class Doctor1AppointmentConfirmationScreen extends StatelessWidget {
             /// FLOATING POWER BUTTON
             ///==========================
             Positioned(
-              bottom: 90,
+              bottom: 40,
               right: 20,
               child: GestureDetector(
                 onTap: () {

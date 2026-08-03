@@ -2,9 +2,19 @@ import 'package:flutter/material.dart';
 import 'doctor1_profile.dart';
 import 'doctor2_profile.dart';
 import 'doctor3_profile.dart';
+import 'favorite_doctors.dart';
+import 'calendar_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int selectedIndex = 0;
+  String searchText = "";
 
   @override
   Widget build(BuildContext context) {
@@ -97,16 +107,19 @@ class HomeScreen extends StatelessWidget {
                             ),
 
                             child: TextField(
+                              onChanged: (value) {
+                                setState(() {
+                                  searchText = value.toLowerCase();
+                                });
+                              },
+
                               decoration: InputDecoration(
                                 border: InputBorder.none,
-
                                 hintText: "Search",
-
                                 hintStyle: TextStyle(
                                   color: Colors.grey.shade500,
                                   fontStyle: FontStyle.italic,
                                 ),
-
                                 prefixIcon: Padding(
                                   padding: const EdgeInsets.all(12),
                                   child: Image.asset(
@@ -240,75 +253,62 @@ class HomeScreen extends StatelessWidget {
 
                     const SizedBox(height: 15),
 
-                    ///========================
-                    /// Doctor Card 1
-                    ///========================
-                    _doctorCard(
-                      image: "assets/images/doctor1.png",
-                      name: "Dr. Sandigan",
-                      speciality: "Internal Medicine",
-                      timing: "Timings: 9:00 AM - 3:30 PM",
-                      days: "M, W, F",
-                      rating: "5.0",
-                      onTap: () {
-                        debugPrint("Arrow Pressed");
+                    if (searchText.isEmpty ||
+                        "dr. sandigan".toLowerCase().contains(searchText))
+                      _doctorCard(
+                        image: "assets/images/doctor1.png",
+                        name: "Dr. Sandigan",
+                        speciality: "Internal Medicine",
+                        timing: "Timings: 9:00 AM - 3:30 PM",
+                        days: "M, W, F",
+                        rating: "5.0",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const DoctorProfile1Screen(),
+                            ),
+                          );
+                        },
+                      ),
 
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const DoctorProfile1Screen(),
-                          ),
-                        );
-                      },
-                    ),
+                    if (searchText.isEmpty ||
+                        "dr. louie".toLowerCase().contains(searchText))
+                      _doctorCard(
+                        image: "assets/images/doctor2.png",
+                        name: "Dr. Louie",
+                        speciality: "Dentist",
+                        timing: "Timings: 9:00 AM - 4:00 PM",
+                        days: "M, T, W, F",
+                        rating: "5.0",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const DoctorProfile2Screen(),
+                            ),
+                          );
+                        },
+                      ),
 
-                    const SizedBox(height: 15),
-
-                    ///========================
-                    /// Doctor Card 2
-                    ///========================
-                    _doctorCard(
-                      image: "assets/images/doctor2.png",
-                      name: "Dr. Louie",
-                      speciality: "Dentist",
-                      timing: "Timings: 9:00 AM - 4:00 PM",
-                      days: "M, T, W, F",
-                      rating: "5.0",
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const DoctorProfile2Screen(),
-                          ),
-                        );
-                      },
-                    ),
-
-                    const SizedBox(height: 15),
-
-                    ///========================
-                    /// Doctor Card 3
-                    ///========================
-                    _doctorCard(
-                      image: "assets/images/doctor3.png",
-                      name: "Dr. Dela Cruz",
-                      speciality: "Dermatologist",
-                      timing: "Timings: 9:00 AM - 4:00 PM",
-                      days: "M, T, W, F",
-                      rating: "4.5",
-                      onTap: () {
-                        debugPrint("Arrow Pressed");
-
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const DoctorProfile3Screen(),
-                          ),
-                        );
-                      },
-                    ),
-
-                    const SizedBox(height: 15),
+                    if (searchText.isEmpty ||
+                        "dr. dela cruz".toLowerCase().contains(searchText))
+                      _doctorCard(
+                        image: "assets/images/doctor3.png",
+                        name: "Dr. Dela Cruz",
+                        speciality: "Dermatologist",
+                        timing: "Timings: 9:00 AM - 4:00 PM",
+                        days: "M, T, W, F",
+                        rating: "4.5",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const DoctorProfile3Screen(),
+                            ),
+                          );
+                        },
+                      ),
 
                     Align(
                       alignment: Alignment.centerRight,
@@ -342,16 +342,33 @@ class HomeScreen extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {},
-              child: Image.asset("assets/images/home.png", width: 30),
+              child: ColorFiltered(
+                colorFilter: const ColorFilter.mode(
+                  Color(0xff2F43F4),
+                  BlendMode.srcIn,
+                ),
+                child: Image.asset("assets/images/home.png", width: 30),
+              ),
             ),
 
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const CalendarScreen()),
+                );
+              },
               child: Image.asset("assets/images/calender.png", width: 30),
             ),
-
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const FavoriteDoctorsScreen(),
+                  ),
+                );
+              },
               child: Image.asset("assets/images/favourite.png", width: 30),
             ),
 

@@ -61,24 +61,6 @@ class _Doctor1AppointmentScreenState extends State<Doctor3AppointmentScreen> {
             ),
 
             ///=========================
-            /// BACK BUTTON
-            ///=========================
-            Positioned(
-              top: 18,
-              left: 18,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: const Icon(
-                  Icons.arrow_back_ios_new,
-                  color: Colors.black,
-                  size: 24,
-                ),
-              ),
-            ),
-
-            ///=========================
             /// TITLE
             ///=========================
             const Positioned(
@@ -393,6 +375,24 @@ class _Doctor1AppointmentScreenState extends State<Doctor3AppointmentScreen> {
 
                   const SizedBox(height: 30),
                 ],
+              ),
+            ),
+
+            ///=========================
+            /// BACK BUTTON
+            ///=========================
+            Positioned(
+              top: 18,
+              left: 18,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: const Icon(
+                  Icons.arrow_back_ios_new,
+                  color: Colors.black,
+                  size: 24,
+                ),
               ),
             ),
 

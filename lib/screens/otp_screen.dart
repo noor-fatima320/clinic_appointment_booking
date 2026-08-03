@@ -51,20 +51,6 @@ class _OtpScreenState extends State<OtpScreen> {
             ),
 
             ///=========================
-            /// Back Button
-            ///=========================
-            Positioned(
-              top: 15,
-              left: 10,
-              child: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black),
-              ),
-            ),
-
-            ///=========================
             /// Page
             ///=========================
             SingleChildScrollView(
@@ -215,6 +201,20 @@ class _OtpScreenState extends State<OtpScreen> {
                     ],
                   ),
                 ),
+              ),
+            ),
+
+            ///=========================
+            /// Back Button
+            ///=========================
+            Positioned(
+              top: 15,
+              left: 10,
+              child: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black),
               ),
             ),
           ],

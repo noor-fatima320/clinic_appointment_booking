@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import 'doctor3_appointment.dart';
+import 'favorite_doctors.dart';
 
-class DoctorProfile3Screen extends StatelessWidget {
+class DoctorProfile3Screen extends StatefulWidget {
   const DoctorProfile3Screen({super.key});
 
+  @override
+  State<DoctorProfile3Screen> createState() => _DoctorProfile3ScreenState();
+}
+
+class _DoctorProfile3ScreenState extends State<DoctorProfile3Screen> {
+  bool isFavourite = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,27 +37,6 @@ class DoctorProfile3Screen extends StatelessWidget {
               right: 0,
               bottom: 0,
               child: Image.asset("assets/images/polygon.png", fit: BoxFit.fill),
-            ),
-
-            ///==========================
-            /// BACK BUTTON
-            ///==========================
-            Positioned(
-              top: 18,
-              left: 18,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (_) => const HomeScreen()),
-                  );
-                },
-                child: const Icon(
-                  Icons.arrow_back_ios_new,
-                  color: Colors.black,
-                  size: 24,
-                ),
-              ),
             ),
 
             ///==========================
@@ -202,11 +188,53 @@ class DoctorProfile3Screen extends StatelessWidget {
                                 ),
 
                                 const SizedBox(width: 12),
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      isFavourite = !isFavourite;
 
-                                Image.asset(
-                                  "assets/images/favorite_button.png",
-                                  width: 36,
-                                  height: 36,
+                                      if (isFavourite) {
+                                        bool alreadyAdded = favouriteDoctors
+                                            .any(
+                                              (doctor) =>
+                                                  doctor["name"] ==
+                                                  "Dr. Dela Cruz",
+                                            );
+
+                                        if (!alreadyAdded) {
+                                          favouriteDoctors.add({
+                                            "name": "Dr. Dela Cruz",
+
+                                            "speciality": "Dermatologist",
+
+                                            "image":
+                                                "assets/images/doctor3.png",
+                                          });
+                                        }
+
+                                        print("Doctor 3 Added");
+                                        print(favouriteDoctors);
+                                      } else {
+                                        favouriteDoctors.removeWhere(
+                                          (doctor) =>
+                                              doctor["name"] == "Dr. Dela Cruz",
+                                        );
+
+                                        print("Doctor 3 Removed");
+                                        print(favouriteDoctors);
+                                      }
+                                    });
+                                  },
+
+                                  child: Icon(
+                                    Icons.favorite,
+
+                                    color: isFavourite
+                                        ? Colors.red
+                                        : Colors.white,
+
+                                    size: 34,
+                                  ),
                                 ),
                               ],
                             ),
@@ -327,7 +355,7 @@ class DoctorProfile3Screen extends StatelessWidget {
                                     backgroundColor: const Color(0xff2F43F4),
 
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(16),
+                                      borderRadius: BorderRadius.circular(40),
                                     ),
                                   ),
 
@@ -354,6 +382,27 @@ class DoctorProfile3Screen extends StatelessWidget {
                   const SizedBox(height: 25),
                   const SizedBox(height: 120),
                 ],
+              ),
+            ),
+
+            ///==========================
+            /// BACK BUTTON
+            ///==========================
+            Positioned(
+              top: 18,
+              left: 18,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (_) => const HomeScreen()),
+                  );
+                },
+                child: const Icon(
+                  Icons.arrow_back_ios_new,
+                  color: Colors.black,
+                  size: 24,
+                ),
               ),
             ),
 

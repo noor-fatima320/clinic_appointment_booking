@@ -61,25 +61,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
             ),
 
             ///==========================
-            /// Back Button
-            ///==========================
-            Positioned(
-              top: 15,
-              left: 10,
-              child: IconButton(
-                splashRadius: 24,
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                icon: const Icon(
-                  Icons.arrow_back_ios_new,
-                  color: Colors.black,
-                  size: 28,
-                ),
-              ),
-            ),
-
-            ///==========================
             /// Main Content
             ///==========================
             SingleChildScrollView(
@@ -463,6 +444,25 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       ),
                     ],
                   ),
+                ),
+              ),
+            ),
+
+            ///==========================
+            /// Back Button
+            ///==========================
+            Positioned(
+              top: 15,
+              left: 10,
+              child: IconButton(
+                splashRadius: 24,
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: const Icon(
+                  Icons.arrow_back_ios_new,
+                  color: Colors.black,
+                  size: 28,
                 ),
               ),
             ),
