@@ -304,7 +304,12 @@ class _Doctor1AppointmentScreenState extends State<Doctor3AppointmentScreen> {
                                         ? const Color(0xff4CAF50)
                                         : (index == 0 ||
                                               index == times.length - 1)
-                                        ? const Color(0xffffe0b2)
+                                        ? const Color.fromARGB(
+                                            255,
+                                            254,
+                                            178,
+                                            63,
+                                          )
                                         : const Color(0xffC8E6C9),
                                     borderRadius: BorderRadius.circular(22),
                                     border: Border.all(
@@ -353,7 +358,7 @@ class _Doctor1AppointmentScreenState extends State<Doctor3AppointmentScreen> {
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xff2F43F4),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(16),
+                                  borderRadius: BorderRadius.circular(40),
                                 ),
                               ),
                               child: const Text(
@@ -398,7 +403,7 @@ class _Doctor1AppointmentScreenState extends State<Doctor3AppointmentScreen> {
 
             /// Floating Power Button
             Positioned(
-              bottom: 115,
+              bottom: 3,
               right: 20,
               child: Image.asset(
                 "assets/images/power.png",
